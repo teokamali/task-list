@@ -22,8 +22,8 @@ export const HomeContainer = (props: IHomeContainerProps) => {
       </StyledDescriptionWrapper>
       <StyledKanbanWrapper>
         <Kanban onDragEnd={DragEndHandler}>
-          <Column id={'todo'} title='Todo' tasks={todo} />
-          <Column id={'doing'} title='Doing' tasks={doing} />
+          <Column id={'todo'} title='Todo' tasks={todo} hasAddAbility />
+          <Column id={'doing'} title='Doing' tasks={doing} hasAddAbility />
           <Column id={'done'} title='Done' tasks={done} />
         </Kanban>
       </StyledKanbanWrapper>

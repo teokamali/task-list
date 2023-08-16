@@ -1,5 +1,5 @@
 import { ICommonHelperParams } from '@base/BaseInterface';
-import { updateTask } from '@redux/slices/tasks/tasksSlice';
+import { removeTask, updateTask } from '@redux/slices/tasks/tasksSlice';
 import { ITaskProps, ITaskState } from './TaskType';
 
 export const useTaskHelper = (
@@ -16,6 +16,7 @@ export const useTaskHelper = (
   }) => {
     dispatch(updateTask({ id, title }));
   };
+
   const changeTaskCheckedHandler = ({
     id,
     checked,
@@ -26,5 +27,9 @@ export const useTaskHelper = (
     dispatch(updateTask({ id, isCompleted: checked }));
   };
 
-  return { changeTaskNameHandler, changeTaskCheckedHandler };
+  const removeTaskHandler = (id: string) => {
+    dispatch(removeTask({ id }));
+  };
+
+  return { changeTaskNameHandler, changeTaskCheckedHandler, removeTaskHandler };
 };

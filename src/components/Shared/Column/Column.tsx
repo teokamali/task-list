@@ -3,17 +3,18 @@ import { ITask } from '@type/tasks/type';
 import { Droppable } from "react-beautiful-dnd";
 import { Task } from '../Task/Task';
 import { useColumnHelper } from './ColumnHelper';
-import { StyledColumnHeader, StyledColumnHeaderCounter, StyledColumnHeaderTitle, StyledColumnWrapper, StyledDroppableWrapper } from './ColumnStyle';
+import { StyledAddTaskButton, StyledColumnHeader, StyledColumnHeaderCounter, StyledColumnHeaderTitle, StyledColumnWrapper, StyledDroppableWrapper } from './ColumnStyle';
 import { IColumnProps, IColumnState } from './ColumnType';
 
 export const Column = (props: IColumnProps) => {
-    useBaseComponent<IColumnProps, IColumnState, ReturnType<typeof useColumnHelper>>({ props, helperHook: useColumnHelper })
-    const { title, id, tasks } = props
+    const { helper } = useBaseComponent<IColumnProps, IColumnState, ReturnType<typeof useColumnHelper>>({ props, helperHook: useColumnHelper })
+    const { title, id, tasks, hasAddAbility = false } = props
+    const { onAddToTodoListHandler } = helper
     return (
         <StyledColumnWrapper>
             <StyledColumnHeader>
                 <StyledColumnHeaderTitle>{title}</StyledColumnHeaderTitle>
-                <StyledColumnHeaderCounter>3 tasks</StyledColumnHeaderCounter>
+                <StyledColumnHeaderCounter>{tasks.length} tasks</StyledColumnHeaderCounter>
             </StyledColumnHeader>
             <Droppable droppableId={id} >
                 {(provided, snapshot) => {
@@ -25,6 +26,9 @@ export const Column = (props: IColumnProps) => {
                         {tasks.map((task: ITask, index: number) =>
                             <Task key={task.id} index={index} task={task} />
                         )}
+                        {
+                            hasAddAbility ? <StyledAddTaskButton onClick={() => onAddToTodoListHandler(title)}>+ Add</StyledAddTaskButton> : <></>
+                        }
                         {provided.placeholder}
                     </StyledDroppableWrapper>
                 }}

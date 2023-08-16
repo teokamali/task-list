@@ -12,7 +12,7 @@ export const Task = (props: ITaskProps) => {
     })
     const { task, index } = props
     const { id, isCompleted, title } = task
-    const { changeTaskNameHandler,changeTaskCheckedHandler } = helper
+    const { changeTaskNameHandler, changeTaskCheckedHandler, removeTaskHandler } = helper
     return (
         <Draggable draggableId={id} index={index}>
             {(provided, snapshot) => (
@@ -24,7 +24,7 @@ export const Task = (props: ITaskProps) => {
                 >
                     <StyledCheckBoxInput type="checkbox" checked={isCompleted} onChange={(event: ChangeEvent<HTMLInputElement>) => changeTaskCheckedHandler({ id, checked: !isCompleted })} />
                     <StyledNameInput type="text" value={title} onChange={(event: ChangeEvent<HTMLInputElement>) => changeTaskNameHandler({ id, title: event.target.value })} />
-                    <StyledRemoveButton>x</StyledRemoveButton>
+                    <StyledRemoveButton onClick={() => removeTaskHandler(id)}>x</StyledRemoveButton>
                 </StyledTaskWrapper>
             )}
         </Draggable>

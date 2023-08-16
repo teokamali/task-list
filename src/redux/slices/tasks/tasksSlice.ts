@@ -4,12 +4,12 @@ import { ITasksSliceState } from './tasksSliceTypes';
 
 const initialState: ITasksSliceState = {
   tasks: [
-    { id: '1', title: 'Test1', isCompleted: false, status: 'todo' },
-    { id: '2', title: 'Test2', isCompleted: false, status: 'todo' },
-    { id: '3', title: 'Test3', isCompleted: false, status: 'todo' },
-    { id: '4', title: 'Test4', isCompleted: false, status: 'todo' },
-    { id: '5', title: 'Test5', isCompleted: false, status: 'todo' },
-    { id: '6', title: 'Test6', isCompleted: false, status: 'todo' },
+    { id: '1', title: 'Test1', isCompleted: false, status: 'Todo' },
+    { id: '2', title: 'Test2', isCompleted: false, status: 'Todo' },
+    { id: '3', title: 'Test3', isCompleted: false, status: 'Todo' },
+    { id: '4', title: 'Test4', isCompleted: false, status: 'Todo' },
+    { id: '5', title: 'Test5', isCompleted: false, status: 'Todo' },
+    { id: '6', title: 'Test6', isCompleted: false, status: 'Todo' },
   ],
 };
 
@@ -33,7 +33,15 @@ export const { actions, reducer } = createSlice({
         };
       }
     },
+    removeTask: (state, action: PayloadAction<{ id: string }>) => {
+      const { id } = action.payload;
+      state.tasks = state.tasks.filter((task) => task.id !== id);
+    },
+    addTask: (state, action: PayloadAction<Required<ITask>>) => {
+      const newTask = action.payload;
+      state.tasks.push(newTask);
+    },
   },
 });
 
-export const { updateTask } = actions;
+export const { updateTask, removeTask, addTask } = actions;

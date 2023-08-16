@@ -17,3 +17,6 @@ export const StyledColumnHeaderCounter = styled.span`
 export const StyledDroppableWrapper = styled.div<{ isDraggingOver: boolean }>`
   ${tw`min-h-[700px] flex flex-col gap-3`}
 `;
+export const StyledAddTaskButton = styled.button`
+  ${tw`w-fit text-[13px] font-semibold`}
+`;

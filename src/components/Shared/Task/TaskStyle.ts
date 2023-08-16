@@ -6,7 +6,7 @@ export const StyledCheckBoxInput = styled.input`
 `;
 
 export const StyledNameInput = styled.input`
-  ${tw`w-fit text-[12px] bg-white font-semibold border-0 outline-0 cursor-default focus:(cursor-text)`}
+  ${tw`w-fit text-[12px] bg-transparent font-semibold border-0 outline-0 cursor-default focus:(cursor-text)`}
 `;
 
 export const StyledRemoveButton = styled.button`
