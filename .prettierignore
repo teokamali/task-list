@@ -1,0 +1,6 @@
+.next
+build
+_templates
+coverage
+node_modules
+yarn.lock
