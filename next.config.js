@@ -1,8 +1,6 @@
 const { join } = require('path');
 const { ProvidePlugin } = require('webpack');
 
-/** @type {import('next').NextConfig} */
-
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
@@ -32,7 +30,6 @@ const nextConfig = {
       '@utils': join(__dirname, './src/utils'),
       '@validation': join(__dirname, './src/validation'),
     };
-
     return config;
   },
 };

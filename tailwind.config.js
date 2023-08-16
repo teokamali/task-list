@@ -16,13 +16,16 @@ module.exports = {
       colors: {
         white: '#ffffff',
         gray: {
-          1: '#15141F',
+          1: '#3A3A3A',
         },
         orange: {
           1: '#FF5C31',
         },
         red: {
-          1: '#E93546',
+          1: '#6E1E29',
+          2: '#D37A87',
+          3: '#F4C5CB',
+          4: '#FEF4F3',
         },
         blue: {
           1: '#448FFF',
