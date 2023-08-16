@@ -1,4 +1,5 @@
 import { useBaseComponent } from '@base/BaseComponent'
+import { ChangeEvent } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import { useTaskHelper } from './TaskHelper'
 import { StyledCheckBoxInput, StyledNameInput, StyledRemoveButton, StyledTaskWrapper } from './TaskStyle'
@@ -11,7 +12,7 @@ export const Task = (props: ITaskProps) => {
     })
     const { task, index } = props
     const { id, isCompleted, title } = task
-    const { } = helper
+    const { changeTaskNameHandler,changeTaskCheckedHandler } = helper
     return (
         <Draggable draggableId={id} index={index}>
             {(provided, snapshot) => (
@@ -21,8 +22,8 @@ export const Task = (props: ITaskProps) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <StyledCheckBoxInput type="checkbox" />
-                    <StyledNameInput type="text" value={title} />
+                    <StyledCheckBoxInput type="checkbox" checked={isCompleted} onChange={(event: ChangeEvent<HTMLInputElement>) => changeTaskCheckedHandler({ id, checked: !isCompleted })} />
+                    <StyledNameInput type="text" value={title} onChange={(event: ChangeEvent<HTMLInputElement>) => changeTaskNameHandler({ id, title: event.target.value })} />
                     <StyledRemoveButton>x</StyledRemoveButton>
                 </StyledTaskWrapper>
             )}

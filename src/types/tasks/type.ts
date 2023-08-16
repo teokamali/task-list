@@ -1,10 +1,6 @@
 export type ITask = {
   id: string;
-  title: string;
-  isCompleted: boolean;
+  title?: string;
+  isCompleted?: boolean;
+  status?: 'todo' | 'doing' | 'done';
 };
-export interface ITasks {
-  todo: ITask[];
-  doing: ITask[];
-  done: ITask[];
-}

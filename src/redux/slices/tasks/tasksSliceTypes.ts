@@ -1,5 +1,5 @@
-import { ITasks } from '@type/tasks/type';
+import { ITask } from '@type/tasks/type';
 
 export interface ITasksSliceState {
-  tasks: ITasks;
+  tasks: Required<ITask>[];
 }

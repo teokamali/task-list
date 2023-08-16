@@ -11,8 +11,7 @@ export const HomeContainer = (props: IHomeContainerProps) => {
     helperHook: useHomeContainerHelper
   })
 
-  const { tasks } = helper
-  const { todo, doing, done } = tasks
+  const { doing, done, todo, DragEndHandler } = helper
 
   return (
     <HomeLayout>
@@ -22,7 +21,7 @@ export const HomeContainer = (props: IHomeContainerProps) => {
           Does not matter how many tasks you done, It’s important to break to small tasks and be on progress.</StyledDescriptionParagraph>
       </StyledDescriptionWrapper>
       <StyledKanbanWrapper>
-        <Kanban onDragEnd={() => { }}>
+        <Kanban onDragEnd={DragEndHandler}>
           <Column id={'todo'} title='Todo' tasks={todo} />
           <Column id={'doing'} title='Doing' tasks={doing} />
           <Column id={'done'} title='Done' tasks={done} />
