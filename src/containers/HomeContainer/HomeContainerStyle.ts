@@ -10,3 +10,6 @@ export const StyledDescriptionTitle = styled.h1`
 export const StyledDescriptionParagraph = styled.p`
   ${tw`text-base font-medium`}
 `;
+export const StyledKanbanWrapper = styled.div`
+  ${tw`mt-[48px]`}
+`;

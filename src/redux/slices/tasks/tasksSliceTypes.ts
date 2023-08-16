@@ -1,5 +1,5 @@
-import { ITask } from '@type/global';
+import { ITasks } from '@type/tasks/type';
 
 export interface ITasksSliceState {
-  tasks: ITask[];
+  tasks: ITasks;
 }

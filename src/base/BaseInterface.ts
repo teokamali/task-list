@@ -1,6 +1,6 @@
 import { useAppDispatch } from '@redux/hooks';
 import { NextRouter } from 'next/router';
-import { ReactElement, ReactNode } from 'react';
+import { CSSProperties, ReactElement, ReactNode } from 'react';
 import { SetPureStateType, SetStateType } from './BaseType';
 
 export interface ITranslateFunction {
@@ -10,7 +10,9 @@ export interface ITranslateFunction {
 export interface IBaseProps {
   children: ReactNode | ReactElement[];
 }
-
+export interface IBaseStyle {
+  style?: CSSProperties;
+}
 export interface IBaseVoidProps {}
 
 export interface IBaseState {}

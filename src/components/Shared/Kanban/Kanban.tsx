@@ -5,10 +5,10 @@ import { StyledKanbanWrapper } from "./KanbanStyle"
 import { IKanbanProps, IKanbanState } from "./KanbanType"
 
 export const Kanban = (props: IKanbanProps) => {
-    useBaseComponent<IKanbanProps, IKanbanState, ReturnType<typeof useKanbanHelper>>({ props, helperHook: useKanbanHelper })
-    const { children } = props
+    const { helper } = useBaseComponent<IKanbanProps, IKanbanState, ReturnType<typeof useKanbanHelper>>({ props, helperHook: useKanbanHelper })
+    const { children,onDragEnd } = props
     return (
-        <DragDropContext onDragEnd={() => { }} >
+        <DragDropContext onDragEnd={onDragEnd} >
             <StyledKanbanWrapper>
                 {children}
             </StyledKanbanWrapper>

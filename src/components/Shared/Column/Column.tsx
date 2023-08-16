@@ -1,12 +1,14 @@
 import { useBaseComponent } from '@base/BaseComponent';
+import { ITask } from '@type/tasks/type';
 import { Droppable } from "react-beautiful-dnd";
+import { Task } from '../Task/Task';
 import { useColumnHelper } from './ColumnHelper';
 import { StyledColumnHeader, StyledColumnHeaderCounter, StyledColumnHeaderTitle, StyledColumnWrapper, StyledDroppableWrapper } from './ColumnStyle';
 import { IColumnProps, IColumnState } from './ColumnType';
 
 export const Column = (props: IColumnProps) => {
     useBaseComponent<IColumnProps, IColumnState, ReturnType<typeof useColumnHelper>>({ props, helperHook: useColumnHelper })
-    const { title, id, children } = props
+    const { title, id, tasks } = props
     return (
         <StyledColumnWrapper>
             <StyledColumnHeader>
@@ -20,7 +22,9 @@ export const Column = (props: IColumnProps) => {
                         {...provided.droppableProps}
                         isDraggingOver={snapshot.isDraggingOver}
                     >
-                        {children}
+                        {tasks.map((task: ITask, index: number) =>
+                            <Task key={task.id} index={index} task={task} />
+                        )}
                         {provided.placeholder}
                     </StyledDroppableWrapper>
                 }}

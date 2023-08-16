@@ -1,6 +1,5 @@
 import { useBaseComponent } from '@base/BaseComponent'
 import { Draggable } from 'react-beautiful-dnd'
-import { CloseIcon } from '../Icons/CloseIcon'
 import { useTaskHelper } from './TaskHelper'
 import { StyledCheckBoxInput, StyledNameInput, StyledRemoveButton, StyledTaskWrapper } from './TaskStyle'
 import { ITaskProps, ITaskState } from './TaskType'
@@ -18,13 +17,13 @@ export const Task = (props: ITaskProps) => {
             {(provided, snapshot) => (
                 <StyledTaskWrapper
                     ref={provided.innerRef}
+                    isDragging={snapshot.isDragging}
                     {...provided.draggableProps}
-                    isDragging={snapshot.isDragging}>
+                    {...provided.dragHandleProps}
+                >
                     <StyledCheckBoxInput type="checkbox" />
                     <StyledNameInput type="text" value={title} />
-                    <StyledRemoveButton>
-                        <CloseIcon />
-                    </StyledRemoveButton>
+                    <StyledRemoveButton>x</StyledRemoveButton>
                 </StyledTaskWrapper>
             )}
         </Draggable>

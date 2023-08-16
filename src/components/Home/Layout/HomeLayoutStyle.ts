@@ -5,5 +5,5 @@ export const StyledHomeLayout = styled.main`
   ${tw`min-h-[100vh]`}
 `;
 export const StyledHomeBodyWrapper = styled.div`
-  ${tw`w-screen h-screen overflow-scroll px-[120px] py-[70px]`}
+  ${tw`w-screen overflow-scroll px-[120px] py-[70px]`}
 `;

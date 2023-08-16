@@ -13,9 +13,3 @@ export interface IPageProps<T = {}> extends React.FC<T> {
 }
 
 export type IBoard = 'Todo' | 'Doing' | 'Done';
-
-export type ITask = {
-  id: string;
-  title: string;
-  isCompleted: boolean;
-};
