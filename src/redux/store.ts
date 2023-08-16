@@ -32,7 +32,7 @@ export const makeStore = ({ isServer }: any) => {
     const persistConfig = {
       key: 'root',
       version: 1,
-      whitelist: ['auth'],
+      whitelist: ['auth', 'tasks'],
       storage,
     };
 

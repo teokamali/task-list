@@ -11,3 +11,10 @@ export interface ITokenData {
 export interface IPageProps<T = {}> extends React.FC<T> {
   needAuth: boolean;
 }
+
+export type ITask = {
+  id: string;
+  title: string;
+  isCompleted: boolean;
+  group: 'todo' | 'doing' | 'done';
+};

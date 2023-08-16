@@ -1,11 +1,11 @@
 import { IPageProps } from '@type/global';
-import { HomeContainer } from 'src/containers/HomeContainer';
+import { HomeContainer } from 'src/containers/HomeContainer/HomeContainer';
 
 const Home: IPageProps = () => {
   return <HomeContainer />;
 };
 
-Home.needAuth = false;
+Home.needAuth = true;
 
 export default Home;
 

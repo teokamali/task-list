@@ -2,14 +2,8 @@ const { join } = require('path');
 const { ProvidePlugin } = require('webpack');
 
 /** @type {import('next').NextConfig} */
-const withPWA = require('next-pwa')({
-  dest: 'public',
-  register: true,
-  skipWaiting: true,
-  disableDevLogs: true,
-});
 
-const nextConfig = withPWA({
+const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   env: {
@@ -41,6 +35,6 @@ const nextConfig = withPWA({
 
     return config;
   },
-});
+};
 
 module.exports = nextConfig;
