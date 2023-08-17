@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 
 export const StyledCheckBoxLabel = styled.label`
-  ${tw`border relative rounded-md w-4 h-4 p-0`}
+  ${tw`border relative  w-4 h-4 p-0`}
 `;
 export const StyledCheckBoxInput = styled.input`
   ${tw`opacity-0 absolute inset-0 w-full h-full`}

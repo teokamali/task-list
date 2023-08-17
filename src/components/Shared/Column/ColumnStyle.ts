@@ -2,16 +2,16 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 
 export const StyledColumnWrapper = styled.div`
-  ${tw`w-full bg-red-1  max-w-[340px] p-5 rounded-[10px]`}
+  ${tw`w-full max-w-[340px] p-5 rounded-[10px]`}
 `;
 export const StyledColumnHeader = styled.header`
-  ${tw`w-full flex items-center justify-between`}
+  ${tw`w-full flex items-center justify-between mb-5`}
 `;
 export const StyledColumnHeaderTitle = styled.h3`
-  ${tw``}
+  ${tw`text-[15px] font-semibold`}
 `;
 export const StyledColumnHeaderCounter = styled.span`
-  ${tw``}
+  ${tw`text-[12px] font-medium`}
 `;
 
 export const StyledDroppableWrapper = styled.div<{ isDraggingOver: boolean }>`
