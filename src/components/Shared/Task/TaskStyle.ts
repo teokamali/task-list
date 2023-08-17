@@ -5,8 +5,9 @@ export const StyledCheckBoxInput = styled.input`
   ${tw`w-4 h-4 bg-white`}
 `;
 
-export const StyledNameTextArea = styled.textarea`
+export const StyledNameTextArea = styled.textarea<{ isCompleted: boolean }>`
   ${tw`w-full text-[12px] resize-none bg-transparent font-semibold border-0 outline-0 cursor-default focus:(cursor-text)`}
+  ${({ isCompleted }) => isCompleted && tw`line-through`}
 `;
 
 export const StyledRemoveButton = styled.button`

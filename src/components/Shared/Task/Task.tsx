@@ -31,7 +31,7 @@ export const Task = (props: ITaskProps) => {
                     {...provided.dragHandleProps}
                 >
                     <CheckBox isChecked={isCompleted} onChange={() => changeTaskCheckedHandler(!isCompleted)} pallet={checkBoxPallet} name={`task-${id}`} id={`task-${id}`} />
-                    <StyledNameTextArea ref={textAreaRef} rows={1} style={isCompleted ? { textDecoration: 'line-through' } : {}} value={title} onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {
+                    <StyledNameTextArea ref={textAreaRef} rows={1} isCompleted={isCompleted} value={title} onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {
                         auto_grow()
                         changeTaskNameHandler({ title: event.target.value })
                     }} />

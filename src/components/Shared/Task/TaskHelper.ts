@@ -30,7 +30,6 @@ export const useTaskHelper = (
     checked: boolean;
   }) => {
     dispatch(updateTask({ id, status, isCompleted: checked }));
-
     if (checked) {
       setTimeout(() => {
         dispatch(

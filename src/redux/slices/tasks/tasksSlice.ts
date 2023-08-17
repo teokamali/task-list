@@ -108,7 +108,7 @@ export const { actions, reducer } = createSlice({
           }
           break;
         case 'Done':
-          const doneTaskIndex = state.todoList.findIndex(
+          const doneTaskIndex = state.doneList.findIndex(
             (task) => task.id === id,
           );
           if (doneTaskIndex !== -1) {
