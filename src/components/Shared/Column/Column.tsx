@@ -33,12 +33,16 @@ export const Column = (props: IColumnProps) => {
                         {...provided.droppableProps}
                         isDraggingOver={snapshot.isDraggingOver}
                     >
+
+
                         {tasks.map((task: ITask, index: number) =>
                             <Task key={task.id} index={index} task={task} pallet={taskPallet} />
                         )}
+
                         {
                             hasAddAbility ? <StyledAddTaskButton style={{ color: addButtonColor }} onClick={() => onAddToTodoListHandler(id)}>+ Add</StyledAddTaskButton> : <></>
                         }
+
                         {provided.placeholder}
                     </StyledDroppableWrapper>
                 }}

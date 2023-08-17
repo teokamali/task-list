@@ -7,16 +7,21 @@ export const useColumnHelper = (
   params: ICommonHelperParams<IColumnProps, IColumnState>,
 ) => {
   const { dispatch } = params;
-  const { tasks } = useAppSelector((state) => state.tasks);
-
+  const { todoList, doingList } = useAppSelector((state) => state.tasks);
   const onAddToTodoListHandler = (boardId: IBoard) => {
-    const lastTask = tasks.findLast((task) => task.id);
+    const lastTask =
+      boardId === 'Todo'
+        ? todoList.findLast((task) => task.id)
+        : doingList.findLast((task) => task.id);
+
     const id = lastTask ? parseInt(lastTask.id) + 1 : '1';
+
     dispatch(
       addTask({
         id: id.toString(),
         status: boardId,
         title: '',
+        isCompleted: false,
       }),
     );
   };

@@ -12,14 +12,13 @@ export const Task = (props: ITaskProps) => {
         helperHook: useTaskHelper
     })
     const { task, index, pallet } = props
-    const { id, title = '' } = task
-    const { changeTaskNameHandler, changeTaskCheckedHandler, removeTaskHandler, statusCondition } = helper
+    const { id, title = '', isCompleted } = task
+    const { changeTaskNameHandler, changeTaskCheckedHandler, removeTaskHandler } = helper
 
     const { checkboxBorder, checkboxCheckColor, removeIconColor } = pallet
     const checkBoxPallet = {
         checkboxBorder, checkboxCheckColor
     }
-
 
     return (
         <Draggable draggableId={id} index={index}>
@@ -31,8 +30,8 @@ export const Task = (props: ITaskProps) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <CheckBox isChecked={statusCondition} onChange={changeTaskCheckedHandler} pallet={checkBoxPallet} />
-                    <StyledNameInput type="text" style={statusCondition ? { textDecoration: 'line-through' } : {}} value={title} onChange={(event: ChangeEvent<HTMLInputElement>) => changeTaskNameHandler({ title: event.target.value })} />
+                    <CheckBox isChecked={isCompleted} onChange={() => changeTaskCheckedHandler(!isCompleted)} pallet={checkBoxPallet} name={`task-${id}`} id={`task-${id}`} />
+                    <StyledNameInput type="text" style={isCompleted ? { textDecoration: 'line-through' } : {}} value={title} onChange={(event: ChangeEvent<HTMLInputElement>) => changeTaskNameHandler({ title: event.target.value })} />
                     <StyledRemoveButton style={{ color: removeIconColor }} onClick={removeTaskHandler}>x</StyledRemoveButton>
                 </StyledTaskWrapper>
             )}

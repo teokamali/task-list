@@ -12,7 +12,7 @@ export const HomeContainer = (props: IHomeContainerProps) => {
     helperHook: useHomeContainerHelper
   })
 
-  const { doing, done, todo, DragEndHandler } = helper
+  const { doingList, doneList, todoList, DragEndHandler } = helper
 
 
   const todoPallet: IColumnColorPallet = {
@@ -52,9 +52,9 @@ export const HomeContainer = (props: IHomeContainerProps) => {
       </StyledDescriptionWrapper>
       <StyledKanbanWrapper>
         <Kanban onDragEnd={DragEndHandler}>
-          <Column id={'Todo'} title='Todo' tasks={todo} hasAddAbility pallet={todoPallet} />
-          <Column id={'Doing'} title='Doing 💪' tasks={doing} hasAddAbility pallet={doingPallet} />
-          <Column id={'Done'} title='Done 🎉' tasks={done} pallet={donePallet} />
+          <Column id={'Todo'} title='Todo' tasks={todoList} hasAddAbility pallet={todoPallet} />
+          <Column id={'Doing'} title='Doing 💪' tasks={doingList} hasAddAbility pallet={doingPallet} />
+          <Column id={'Done'} title='Done 🎉' tasks={doneList} pallet={donePallet} />
         </Kanban>
       </StyledKanbanWrapper>
 

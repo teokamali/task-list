@@ -4,4 +4,5 @@ export type ITask = {
   id: string;
   title?: string;
   status: IBoard;
+  isCompleted: boolean;
 };
