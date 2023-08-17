@@ -1,9 +1,9 @@
 import { useBaseComponent } from '@base/BaseComponent'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useEffect, useRef } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import { CheckBox } from '../Checkbox/Checkbox'
 import { useTaskHelper } from './TaskHelper'
-import { StyledNameInput, StyledRemoveButton, StyledTaskWrapper } from './TaskStyle'
+import { StyledNameTextArea, StyledRemoveButton, StyledTaskWrapper } from './TaskStyle'
 import { ITaskProps, ITaskState } from './TaskType'
 
 export const Task = (props: ITaskProps) => {
@@ -20,6 +20,18 @@ export const Task = (props: ITaskProps) => {
         checkboxBorder, checkboxCheckColor
     }
 
+    const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
+
+    const auto_grow = () => {
+        if (textAreaRef.current) {
+            textAreaRef.current.style.height = "5px";
+            textAreaRef.current.style.height = (textAreaRef.current.scrollHeight) + "px";
+        }
+    }
+    useEffect(() => {
+        auto_grow()
+    }, [])
+
     return (
         <Draggable draggableId={id} index={index}>
             {(provided, snapshot) => (
@@ -31,7 +43,10 @@ export const Task = (props: ITaskProps) => {
                     {...provided.dragHandleProps}
                 >
                     <CheckBox isChecked={isCompleted} onChange={() => changeTaskCheckedHandler(!isCompleted)} pallet={checkBoxPallet} name={`task-${id}`} id={`task-${id}`} />
-                    <StyledNameInput type="text" style={isCompleted ? { textDecoration: 'line-through' } : {}} value={title} onChange={(event: ChangeEvent<HTMLInputElement>) => changeTaskNameHandler({ title: event.target.value })} />
+                    <StyledNameTextArea ref={textAreaRef} rows={1} style={isCompleted ? { textDecoration: 'line-through' } : {}} value={title} onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {
+                        auto_grow()
+                        changeTaskNameHandler({ title: event.target.value })
+                    }} />
                     <StyledRemoveButton style={{ color: removeIconColor }} onClick={removeTaskHandler}>x</StyledRemoveButton>
                 </StyledTaskWrapper>
             )}

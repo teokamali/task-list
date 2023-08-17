@@ -4,15 +4,54 @@ import { ITask } from '@type/tasks/type';
 import { ITaskUpdatePayload, ITasksSliceState } from './tasksSliceTypes';
 
 const initialState: ITasksSliceState = {
-  doingList: [],
-  doneList: [],
   todoList: [
-    { id: '1', title: 'Test1', status: 'Todo', isCompleted: false },
-    { id: '2', title: 'Test2', status: 'Todo', isCompleted: false },
-    { id: '3', title: 'Test3', status: 'Todo', isCompleted: false },
-    { id: '4', title: 'Test4', status: 'Todo', isCompleted: false },
-    { id: '5', title: 'Test5', status: 'Todo', isCompleted: false },
-    { id: '6', title: 'Test6', status: 'Todo', isCompleted: false },
+    {
+      id: '1',
+      title: 'Start with meditation, exercise & breakfast for a productive day',
+      status: 'Todo',
+      isCompleted: false,
+    },
+    {
+      id: '2',
+      title: 'Read to learn something new every day',
+      status: 'Todo',
+      isCompleted: false,
+    },
+  ],
+  doingList: [
+    {
+      id: '3',
+      title: 'Engage & question in meetings',
+      status: 'Doing',
+      isCompleted: false,
+    },
+    {
+      id: '4',
+      title: 'Use time-blocking for effective days',
+      status: 'Doing',
+      isCompleted: false,
+    },
+    {
+      id: '5',
+      title: 'Learn something fresh & relevant',
+      status: 'Doing',
+      isCompleted: false,
+    },
+  ],
+  doneList: [
+    {
+      id: '6',
+      status: 'Done',
+      title: 'Finished online course - check!',
+      isCompleted: true,
+    },
+    {
+      id: '7',
+      status: 'Done',
+      title:
+        'Congratulate yourself for incorporating healthier habits into your lifestyle, like regular exercise or mindful eating',
+      isCompleted: true,
+    },
   ],
 };
 
