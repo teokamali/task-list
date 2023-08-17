@@ -6,5 +6,16 @@ export interface IColumnProps {
   title: IBoard;
   hasAddAbility?: boolean;
   tasks: ITask[];
+  pallet: IColumnColorPallet;
 }
 export interface IColumnState {}
+
+export interface IColumnColorPallet {
+  bgColor: string;
+  titleColor: string;
+  tasksCounterColor: string;
+  removeIconColor: string;
+  checkboxBorder: string;
+  checkboxCheckColor: string;
+  addButtonColor: string;
+}

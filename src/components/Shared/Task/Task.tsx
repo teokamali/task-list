@@ -1,8 +1,9 @@
 import { useBaseComponent } from '@base/BaseComponent'
 import { ChangeEvent } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
+import { CheckBox } from '../Checkbox/Checkbox'
 import { useTaskHelper } from './TaskHelper'
-import { StyledCheckBoxInput, StyledNameInput, StyledRemoveButton, StyledTaskWrapper } from './TaskStyle'
+import { StyledNameInput, StyledRemoveButton, StyledTaskWrapper } from './TaskStyle'
 import { ITaskProps, ITaskState } from './TaskType'
 
 export const Task = (props: ITaskProps) => {
@@ -10,9 +11,14 @@ export const Task = (props: ITaskProps) => {
         props,
         helperHook: useTaskHelper
     })
-    const { task, index } = props
-    const { id, isCompleted, title } = task
+    const { task, index, pallet } = props
+    const { id, isCompleted = false, title = '' } = task
     const { changeTaskNameHandler, changeTaskCheckedHandler, removeTaskHandler } = helper
+
+    const { checkboxBorder, checkboxCheckColor, removeIconColor } = pallet
+    const checkBoxPallet = {
+        checkboxBorder, checkboxCheckColor
+    }
     return (
         <Draggable draggableId={id} index={index}>
             {(provided, snapshot) => (
@@ -22,9 +28,9 @@ export const Task = (props: ITaskProps) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <StyledCheckBoxInput type="checkbox" checked={isCompleted} onChange={(event: ChangeEvent<HTMLInputElement>) => changeTaskCheckedHandler({ id, checked: !isCompleted })} />
+                    <CheckBox isChecked={isCompleted} onChange={() => changeTaskCheckedHandler({ id, checked: !isCompleted })} pallet={checkBoxPallet} />
                     <StyledNameInput type="text" value={title} onChange={(event: ChangeEvent<HTMLInputElement>) => changeTaskNameHandler({ id, title: event.target.value })} />
-                    <StyledRemoveButton onClick={() => removeTaskHandler(id)}>x</StyledRemoveButton>
+                    <StyledRemoveButton style={{ color: removeIconColor }} onClick={() => removeTaskHandler(id)}>x</StyledRemoveButton>
                 </StyledTaskWrapper>
             )}
         </Draggable>
