@@ -15,8 +15,6 @@ export const useHomeContainerHelper = (
 
   const DragEndHandler = (event: any) => {
     const { destination, source, draggableId } = event;
-    console.log({ destination, source, draggableId });
-
     if (destination) {
       dispatch(
         reorderTask({

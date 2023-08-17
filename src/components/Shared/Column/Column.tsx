@@ -31,19 +31,21 @@ export const Column = (props: IColumnProps) => {
                     return <StyledDroppableWrapper
                         ref={provided.innerRef}
                         {...provided.droppableProps}
-                        isDraggingOver={snapshot.isDraggingOver}
                     >
-
-
                         {tasks.map((task: ITask, index: number) =>
                             <Task key={task.id} index={index} task={task} pallet={taskPallet} />
                         )}
+                        {
+                            snapshot.isDraggingOver ?
+                                <div className='border' style={{ borderColor: checkboxBorder }}>
+                                    {provided.placeholder}
+                                </div> : <> {provided.placeholder}</>
+                        }
 
                         {
                             hasAddAbility ? <StyledAddTaskButton style={{ color: addButtonColor }} onClick={() => onAddToTodoListHandler(id)}>+ Add</StyledAddTaskButton> : <></>
                         }
 
-                        {provided.placeholder}
                     </StyledDroppableWrapper>
                 }}
             </Droppable>

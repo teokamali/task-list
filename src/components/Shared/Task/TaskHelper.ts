@@ -6,6 +6,7 @@ import {
   updateTask,
 } from '@redux/slices/tasks/tasksSlice';
 import { ITask } from '@type/tasks/type';
+import { useEffect, useRef } from 'react';
 import { ITaskProps, ITaskState } from './TaskType';
 
 export const useTaskHelper = (
@@ -15,6 +16,7 @@ export const useTaskHelper = (
   const { doingList, todoList } = useAppSelector((state) => state.tasks);
   const { task } = props;
   const { status, id, isCompleted } = task;
+  const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const changeTaskNameHandler = ({ title }: { title: string }) => {
     dispatch(updateTask({ id, title, status, isCompleted }));
@@ -28,17 +30,19 @@ export const useTaskHelper = (
     checked: boolean;
   }) => {
     dispatch(updateTask({ id, status, isCompleted: checked }));
-    
+
     if (checked) {
-      dispatch(
-        reorderTask({
-          fromBoard: status,
-          id,
-          toBoard: 'Done',
-          fromIndex,
-          toIndex: 0,
-        }),
-      );
+      setTimeout(() => {
+        dispatch(
+          reorderTask({
+            fromBoard: status,
+            id,
+            toBoard: 'Done',
+            fromIndex,
+            toIndex: 0,
+          }),
+        );
+      }, 3000);
     }
   };
 
@@ -62,9 +66,22 @@ export const useTaskHelper = (
     dispatch(removeTask({ id, status }));
   };
 
+  const auto_grow = () => {
+    if (textAreaRef.current) {
+      textAreaRef.current.style.height = '5px';
+      textAreaRef.current.style.height =
+        textAreaRef.current.scrollHeight + 'px';
+    }
+  };
+  useEffect(() => {
+    auto_grow();
+  }, []);
+
   return {
     changeTaskNameHandler,
     changeTaskCheckedHandler,
     removeTaskHandler,
+    auto_grow,
+    textAreaRef,
   };
 };

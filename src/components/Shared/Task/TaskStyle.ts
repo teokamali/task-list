@@ -14,13 +14,10 @@ export const StyledRemoveButton = styled.button`
 `;
 
 export const StyledTaskWrapper = styled.div<{
-  isDragging: boolean;
   borderColor: string;
 }>`
-  ${tw`relative px-2.5 py-3 w-full flex items-center justify-start gap-2.5 bg-white text-gray-1 border rounded`}
-  ${({ isDragging }) => (isDragging ? tw`bg-yellow-1` : tw`bg-white`)}
+  ${tw`relative px-2.5 py-3 w-full flex items-center  justify-start gap-2.5 bg-white text-gray-1 border rounded`}
   ${({ borderColor }) => (borderColor ? { borderColor: borderColor } : tw``)}
-
   &:hover ${StyledRemoveButton} {
     opacity: 1;
   }
