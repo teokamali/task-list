@@ -4,12 +4,12 @@ import { ITasksSliceState } from './tasksSliceTypes';
 
 const initialState: ITasksSliceState = {
   tasks: [
-    { id: '1', title: 'Test1', isCompleted: false, status: 'Todo' },
-    { id: '2', title: 'Test2', isCompleted: false, status: 'Todo' },
-    { id: '3', title: 'Test3', isCompleted: false, status: 'Todo' },
-    { id: '4', title: 'Test4', isCompleted: false, status: 'Todo' },
-    { id: '5', title: 'Test5', isCompleted: false, status: 'Todo' },
-    { id: '6', title: 'Test6', isCompleted: false, status: 'Todo' },
+    { id: '1', title: 'Test1', status: 'Todo' },
+    { id: '2', title: 'Test2', status: 'Todo' },
+    { id: '3', title: 'Test3', status: 'Todo' },
+    { id: '4', title: 'Test4', status: 'Todo' },
+    { id: '5', title: 'Test5', status: 'Todo' },
+    { id: '6', title: 'Test6', status: 'Todo' },
   ],
 };
 
@@ -18,7 +18,7 @@ export const { actions, reducer } = createSlice({
   initialState: initialState,
   reducers: {
     updateTask: (state, action: PayloadAction<ITask>) => {
-      const { id, status, title, isCompleted } = action.payload;
+      const { id, status, title } = action.payload;
 
       const taskIndex = state.tasks.findIndex((task) => task.id === id);
       if (taskIndex !== -1) {
@@ -26,10 +26,6 @@ export const { actions, reducer } = createSlice({
           ...state.tasks[taskIndex],
           status: status !== undefined ? status : state.tasks[taskIndex].status,
           title: title !== undefined ? title : state.tasks[taskIndex].title,
-          isCompleted:
-            isCompleted !== undefined
-              ? isCompleted
-              : state.tasks[taskIndex].isCompleted,
         };
       }
     },

@@ -12,25 +12,28 @@ export const Task = (props: ITaskProps) => {
         helperHook: useTaskHelper
     })
     const { task, index, pallet } = props
-    const { id, isCompleted = false, title = '' } = task
-    const { changeTaskNameHandler, changeTaskCheckedHandler, removeTaskHandler } = helper
+    const { id, title = '' } = task
+    const { changeTaskNameHandler, changeTaskCheckedHandler, removeTaskHandler, statusCondition } = helper
 
     const { checkboxBorder, checkboxCheckColor, removeIconColor } = pallet
     const checkBoxPallet = {
         checkboxBorder, checkboxCheckColor
     }
+
+
     return (
         <Draggable draggableId={id} index={index}>
             {(provided, snapshot) => (
                 <StyledTaskWrapper
+                    borderColor={checkboxBorder}
                     ref={provided.innerRef}
                     isDragging={snapshot.isDragging}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <CheckBox isChecked={isCompleted} onChange={() => changeTaskCheckedHandler({ id, checked: !isCompleted })} pallet={checkBoxPallet} />
-                    <StyledNameInput type="text" value={title} onChange={(event: ChangeEvent<HTMLInputElement>) => changeTaskNameHandler({ id, title: event.target.value })} />
-                    <StyledRemoveButton style={{ color: removeIconColor }} onClick={() => removeTaskHandler(id)}>x</StyledRemoveButton>
+                    <CheckBox isChecked={statusCondition} onChange={changeTaskCheckedHandler} pallet={checkBoxPallet} />
+                    <StyledNameInput type="text" style={statusCondition ? { textDecoration: 'line-through' } : {}} value={title} onChange={(event: ChangeEvent<HTMLInputElement>) => changeTaskNameHandler({ title: event.target.value })} />
+                    <StyledRemoveButton style={{ color: removeIconColor }} onClick={removeTaskHandler}>x</StyledRemoveButton>
                 </StyledTaskWrapper>
             )}
         </Draggable>

@@ -12,7 +12,7 @@ export const Column = (props: IColumnProps) => {
     const { title, id, tasks, hasAddAbility = false, pallet } = props
     const { onAddToTodoListHandler } = helper
 
-    const { addButtonColor, bgColor, checkboxBorder, removeIconColor, tasksCounterColor, titleColor,checkboxCheckColor } = pallet
+    const { addButtonColor, bgColor, checkboxBorder, removeIconColor, tasksCounterColor, titleColor, checkboxCheckColor } = pallet
 
     const taskPallet: ITaskPallet = {
         checkboxBorder,
@@ -37,7 +37,7 @@ export const Column = (props: IColumnProps) => {
                             <Task key={task.id} index={index} task={task} pallet={taskPallet} />
                         )}
                         {
-                            hasAddAbility ? <StyledAddTaskButton style={{ color: addButtonColor }} onClick={() => onAddToTodoListHandler(title)}>+ Add</StyledAddTaskButton> : <></>
+                            hasAddAbility ? <StyledAddTaskButton style={{ color: addButtonColor }} onClick={() => onAddToTodoListHandler(id)}>+ Add</StyledAddTaskButton> : <></>
                         }
                         {provided.placeholder}
                     </StyledDroppableWrapper>

@@ -2,8 +2,8 @@ import { IBoard } from '@type/global';
 import { ITask } from '@type/tasks/type';
 
 export interface IColumnProps {
-  id: string;
-  title: IBoard;
+  id: IBoard;
+  title: string;
   hasAddAbility?: boolean;
   tasks: ITask[];
   pallet: IColumnColorPallet;
@@ -17,5 +17,5 @@ export interface IColumnColorPallet {
   removeIconColor: string;
   checkboxBorder: string;
   checkboxCheckColor: string;
-  addButtonColor: string;
+  addButtonColor?: string;
 }

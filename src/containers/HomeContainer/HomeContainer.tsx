@@ -21,8 +21,25 @@ export const HomeContainer = (props: IHomeContainerProps) => {
     tasksCounterColor: "#D4AFB4",
     removeIconColor: "#F4C5CB",
     checkboxBorder: "#EDD6D3",
-    checkboxCheckColor:'#D37A87',
+    checkboxCheckColor: '#D37A87',
     addButtonColor: "#D37A87"
+  }
+  const doingPallet: IColumnColorPallet = {
+    bgColor: "#FFFBF2",
+    titleColor: "#795B19",
+    tasksCounterColor: "#DECCA4",
+    removeIconColor: "#c6b286",
+    checkboxBorder: "#DBD2BC",
+    checkboxCheckColor: '#C2A25B',
+    addButtonColor: "#C2A25B"
+  }
+  const donePallet: IColumnColorPallet = {
+    bgColor: "#F4F9F3",
+    titleColor: "#286C1A",
+    tasksCounterColor: "#BCD7B6",
+    removeIconColor: "#D0E7CB",
+    checkboxBorder: "#D0E7CB",
+    checkboxCheckColor: '#9BCD90',
   }
 
 
@@ -35,9 +52,9 @@ export const HomeContainer = (props: IHomeContainerProps) => {
       </StyledDescriptionWrapper>
       <StyledKanbanWrapper>
         <Kanban onDragEnd={DragEndHandler}>
-          <Column id={'todo'} title='Todo' tasks={todo} hasAddAbility pallet={todoPallet} />
-          <Column id={'doing'} title='Doing' tasks={doing} hasAddAbility pallet={todoPallet} />
-          <Column id={'done'} title='Done' tasks={done} pallet={todoPallet} />
+          <Column id={'Todo'} title='Todo' tasks={todo} hasAddAbility pallet={todoPallet} />
+          <Column id={'Doing'} title='Doing 💪' tasks={doing} hasAddAbility pallet={doingPallet} />
+          <Column id={'Done'} title='Done 🎉' tasks={done} pallet={donePallet} />
         </Kanban>
       </StyledKanbanWrapper>
 

@@ -9,14 +9,13 @@ export const useColumnHelper = (
   const { dispatch } = params;
   const { tasks } = useAppSelector((state) => state.tasks);
 
-  const onAddToTodoListHandler = (boardTitle: IBoard) => {
+  const onAddToTodoListHandler = (boardId: IBoard) => {
     const lastTask = tasks.findLast((task) => task.id);
     const id = lastTask ? parseInt(lastTask.id) + 1 : '1';
     dispatch(
       addTask({
         id: id.toString(),
-        isCompleted: false,
-        status: boardTitle,
+        status: boardId,
         title: '',
       }),
     );
