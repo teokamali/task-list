@@ -1,6 +1,8 @@
 import { ICommonHelperParams } from '@base/BaseInterface';
 import { useAppSelector } from '@redux/hooks';
-import { reorderTask } from '@redux/slices/tasks/tasksSlice';
+import { addTask, reorderTask } from '@redux/slices/tasks/tasksSlice';
+import { useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { IHomeContainerProps, IHomeContainerState } from './HomeContainerType';
 
 export const useHomeContainerHelper = (
@@ -27,6 +29,32 @@ export const useHomeContainerHelper = (
       );
     }
   };
+
+  const handlePaste = (event: ClipboardEvent) => {
+    const pastedText = event.clipboardData?.getData('text/plain') || '';
+    const newTasksToImport = pastedText.split('\n');
+
+    newTasksToImport.forEach((taskTitle) => {
+      dispatch(
+        addTask({
+          id: uuidv4(),
+          isCompleted: false,
+          status: 'Todo',
+          title: taskTitle.trim(),
+        }),
+      );
+    });
+  };
+
+  useEffect(() => {
+    // Attach the onPaste event listener when the component mounts
+    document.addEventListener('paste', handlePaste);
+
+    // Clean up by removing the event listener when the component unmounts
+    return () => {
+      document.removeEventListener('paste', handlePaste);
+    };
+  }, []); //
 
   return { todoList, doingList, doneList, DragEndHandler };
 };
