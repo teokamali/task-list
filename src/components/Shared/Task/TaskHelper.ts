@@ -13,7 +13,9 @@ export const useTaskHelper = (
   params: ICommonHelperParams<ITaskProps, ITaskState>,
 ) => {
   const { dispatch, props } = params;
-  const { doingList, todoList } = useAppSelector((state) => state.tasks);
+  const { doingList, todoList, doneList } = useAppSelector(
+    (state) => state.tasks,
+  );
   const { task } = props;
   const { status, id, isCompleted } = task;
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -30,34 +32,41 @@ export const useTaskHelper = (
     checked: boolean;
   }) => {
     dispatch(updateTask({ id, status, isCompleted: checked }));
-    if (checked) {
-      setTimeout(() => {
-        dispatch(
-          reorderTask({
-            fromBoard: status,
-            id,
-            toBoard: 'Done',
-            fromIndex,
-            toIndex: 0,
-          }),
-        );
-      }, 3000);
-    }
+    
+    setTimeout(() => {
+      dispatch(
+        reorderTask({
+          fromBoard: status,
+          id,
+          toBoard: checked ? 'Done' : 'Todo',
+          fromIndex,
+          toIndex: 0,
+        }),
+      );
+    }, 3000);
   };
 
   const changeTaskCheckedHandler = (checked: boolean) => {
-    if (task.status === 'Done') return;
-
     switch (status) {
       case 'Todo':
         const todoTaskIndex = todoList.findIndex((task) => task.id === id);
         updateTaskStatus({ fromIndex: todoTaskIndex, checked });
-      // index = todoList.findIndex((task: ITask) => task.id === id);
+        break;
       case 'Doing':
         const doingTaskIndex = doingList.findIndex(
           (task: ITask) => task.id === id,
         );
         updateTaskStatus({ fromIndex: doingTaskIndex, checked });
+        break;
+      case 'Done':
+        const doneTaskIndex = doneList.findIndex(
+          (task: ITask) => task.id === id,
+        );
+        updateTaskStatus({ fromIndex: doneTaskIndex, checked });
+        break;
+
+      default:
+        return;
     }
   };
 

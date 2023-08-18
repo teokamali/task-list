@@ -118,6 +118,10 @@ export const { actions, reducer } = createSlice({
                 title !== undefined
                   ? title
                   : state.doneList[doneTaskIndex].title,
+              isCompleted:
+                isCompleted !== undefined
+                  ? isCompleted
+                  : state.doingList[doneTaskIndex].isCompleted,
             };
           }
           break;
